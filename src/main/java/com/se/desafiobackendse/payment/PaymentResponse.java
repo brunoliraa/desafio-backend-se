@@ -1,6 +1,4 @@
 package com.se.desafiobackendse.payment;
 
-public record PaymentResponse (
-        String paymentLink
-) {
+public record PaymentResponse(String paymentLink) {
 }
