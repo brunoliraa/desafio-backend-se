@@ -10,11 +10,13 @@ public class PaymentDiscountPercentProcessor extends PaymentProcessor {
     @Override
     protected void handle(PaymentRequest paymentRequest) {
 
-        var total = paymentRequest.getTotalAmount()
-                .subtract(paymentRequest.getTotalAmount()
-                .multiply(new BigDecimal(paymentRequest.getDiscountPercent() / 100)))
-                .setScale(2, RoundingMode.HALF_EVEN);
+        if(paymentRequest.getDiscountPercent() != null) {
+            final var total = paymentRequest.getValueToPay()
+                    .subtract(paymentRequest.getValueToPay()
+                    .multiply(new BigDecimal(paymentRequest.getDiscountPercent() / 100)))
+                    .setScale(2, RoundingMode.HALF_EVEN);
 
-        paymentRequest.setTotalAmount(total);
+            paymentRequest.setValueToPay(total);
+        }
     }
 }

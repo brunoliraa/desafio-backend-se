@@ -7,6 +7,8 @@ public class PaymentRequest {
     private BigDecimal totalAmount;
     private BigDecimal value;
 
+    private BigDecimal valueToPay;
+
     private BigDecimal increase;
 
     private BigDecimal discount;
@@ -15,9 +17,10 @@ public class PaymentRequest {
 
     private Double discountPercent;
 
-    public PaymentRequest(BigDecimal totalAmount, BigDecimal value, BigDecimal increase, BigDecimal discount, Double increasePercent, Double discountPercent) {
+    public PaymentRequest(BigDecimal totalAmount, BigDecimal value, BigDecimal valueToPay, BigDecimal increase, BigDecimal discount, Double increasePercent, Double discountPercent) {
         this.totalAmount = totalAmount;
         this.value = value;
+        this.valueToPay = valueToPay;
         this.increase = increase;
         this.discount = discount;
         this.increasePercent = increasePercent;
@@ -35,6 +38,14 @@ public class PaymentRequest {
 
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public BigDecimal getValueToPay() {
+        return valueToPay;
+    }
+
+    public void setValueToPay(BigDecimal valueToPay) {
+        this.valueToPay = valueToPay;
     }
 
     public BigDecimal getValue() {

@@ -14,13 +14,9 @@ public class PaymentService {
     private PagseguroClient client;
 
     public PaymentResponse getPaymentLink(final PaymentRequest paymentRequest) {
-
         var paymentProcessor = getPaymentProcessor();
-
         paymentProcessor.process(paymentRequest);
-
-//        return new PaymentResponse(payment.generatePaymentLink(paymentRequest.value()));
-        return new PaymentResponse(paymentRequest.getTotalAmount().toString());
+        return new PaymentResponse(payment.generatePaymentLink(paymentRequest.getValueToPay()));
     }
 
     private PaymentProcessor getPaymentProcessor() {
@@ -28,6 +24,7 @@ public class PaymentService {
         processor.setNext(new PaymentIncreasePercentProcessor());
         processor.setNext(new PaymentDiscountProcessor());
         processor.setNext(new PaymentDiscountPercentProcessor());
+        processor.setNext(new PaymentValueToPayProcess());
         return processor;
     }
 }

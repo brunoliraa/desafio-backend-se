@@ -9,12 +9,14 @@ public class PaymentIncreasePercentProcessor extends PaymentProcessor {
     @Override
     protected void handle(PaymentRequest paymentRequest) {
 
-        var total = paymentRequest.getTotalAmount()
-                .add(paymentRequest.getTotalAmount()
-                .multiply(new BigDecimal(paymentRequest.getIncreasePercent() / 100)))
-                .setScale(2, RoundingMode.HALF_EVEN);
+        if (paymentRequest.getIncreasePercent() != null) {
+            final var total = paymentRequest.getValueToPay()
+                    .add(paymentRequest.getValueToPay()
+                    .multiply(new BigDecimal(paymentRequest.getIncreasePercent() / 100)))
+                    .setScale(2, RoundingMode.HALF_EVEN);
 
-        paymentRequest.setTotalAmount(total);
+            paymentRequest.setValueToPay(total);
+        }
 
     }
 }
