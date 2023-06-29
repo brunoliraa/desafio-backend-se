@@ -16,8 +16,8 @@ import java.math.BigDecimal;
 public class PagseguroClient {
 
     private RestTemplate restTemplate = new RestTemplate();
-    private String email = "email";
-    private String token = "token";
+    private String email = "bruno_2010.1@hotmail.com";
+    private String token = "0908581DE02D4354B06AD1E33C0C186C";
     private String url = "https://ws.sandbox.pagseguro.uol.com.br/v2/checkout";
 
 
